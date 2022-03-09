@@ -286,9 +286,6 @@ begin
 	
 end
 
-# ╔═╡ 634bbdc4-f38a-4fad-b9b2-22f220f225c9
-df
-
 # ╔═╡ 07ca2450-8a84-4e71-adcf-91b12a1544ee
 begin
 
@@ -313,10 +310,13 @@ begin
 	c2 = 0.01*34.5
 	c3 = 0.01*249
 	c4 = 0.01*88.1
-	v1 = (df[5,6]*df[6,6])/((1+df[5,6])*(1+df[6,6])-1) #other substrates are set to the default value 1 
-	v2 = (df[3,6]*df[4,6])/((1+df[3,6])*(1+df[4,6])-1)
-	v3 = (df[2,6]*df[8,6])/((1+df[2,6])*(1+df[8,6])-1)
-	v4 = (df[7,6]*df[9,6])/((1+df[7,6])*(1+df[9,6])-1)
+	c5 = 0.01 * 13.7
+	v1 = (df[5,6]*df[6,6])/((1+df[5,6])*(1+df[6,6])) #other substrates are set to the default value 1 
+	v2 = (df[3,6]*df[4,6])/((1+df[3,6])*(1+df[4,6]))
+	v3 = (df[2,6]*df[8,6])/((1+df[2,6])*(1+df[8,6]))
+	v4 = (df[7,6]*df[9,6])/((1+df[7,6])*(1+df[9,6]))
+	v5 = df[1,6]/(1+df[1,6])
+	v6 = 1
 
 end
 
@@ -332,10 +332,12 @@ begin
 	flux_bounds_array2[2,2] = c2*v2
 	flux_bounds_array2[3,2] = c3*v3
 	flux_bounds_array2[4,2] = c4*v4
+	flux_bounds_array2[5,2] = c5*v5
+	flux_bounds_array2[6,2] = c5*v6
 
 
 	# O2 uptake -
-	flux_bounds_array2[15,1] = 0.02 #set to the lowest bound that allows the model to find a solution
+	flux_bounds_array2[15,1] = 0.0045 #set to the highest bound that allows the model to find an optimal solution
 
 	# setup species bounds array -
 	species_bounds_array2 = zeros(ℳ,2)
@@ -1936,7 +1938,6 @@ version = "0.9.1+5"
 # ╟─07ca2450-8a84-4e71-adcf-91b12a1544ee
 # ╟─e2917845-d956-45f0-a379-ea826caf7d88
 # ╠═85e1ac31-90cf-48da-b4d7-b6c009328084
-# ╠═634bbdc4-f38a-4fad-b9b2-22f220f225c9
 # ╠═fdb781ab-a96c-4447-aa2d-9bd40e1101b0
 # ╠═b8ba7575-bb86-4960-8d8e-82bbc7efe5a3
 # ╠═0d4fc659-5e49-4ae2-bb89-56e92957c270
